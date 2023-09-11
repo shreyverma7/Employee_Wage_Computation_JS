@@ -1,0 +1,45 @@
+function generateRandomNumbers(count) {
+    const randomNumbers = [];
+    for (let i = 0; i < count; i++) {
+      const randomNumber = Math.floor(Math.random() * (999 - 100 + 1)) + 100; // Generates random 3-digit numbers
+      randomNumbers.push(randomNumber);
+    }
+    return randomNumbers;
+  }
+  
+  function findSecondSmallestAndLargest(numbers) {
+    if (numbers.length < 2) {
+      return null;
+    }
+  
+    let smallest = secondSmallest = Infinity;
+    let largest = secondLargest = -Infinity;
+  
+    for (let i = 0; i < numbers.length; i++) {
+      const num = numbers[i];
+  
+      if (num < smallest) {
+        secondSmallest = smallest;
+        smallest = num;
+      } else if (num < secondSmallest && num !== smallest) {
+        secondSmallest = num;
+      }
+  
+      if (num > largest) {
+        secondLargest = largest;
+        largest = num;
+      } else if (num > secondLargest && num !== largest) {
+        secondLargest = num;
+      }
+    }
+  
+    return { secondSmallest, secondLargest };
+  }
+  
+  const randomNumbers = generateRandomNumbers(10);
+  console.log("Generated Random Numbers:", randomNumbers);
+  
+  const result = findSecondSmallestAndLargest(randomNumbers);
+  console.log("Second Smallest Element:", result.secondSmallest);
+  console.log("Second Largest Element:", result.secondLargest);
+  
